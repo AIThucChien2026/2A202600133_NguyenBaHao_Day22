@@ -91,14 +91,14 @@ Lựa chọn này giúp mình tập trung vào việc quan sát các chỉ số 
 
 ## 7. Benchmark interpretation (≥ 150 words)
 
-> **Lưu ý: Phần Benchmark (NB6) không được thực thi trong phiên bản này do thiếu ảnh số 7.**
+> **Ảnh tham chiếu: `submission/screenshots/07-benchmark-comparison.png`**
 
-Nếu chạy Benchmark, chúng ta kỳ vọng:
-1. **AlpacaEval-lite:** Điểm win-rate sẽ tăng mạnh so với SFT, phản ánh đúng kết quả "Helpfulness" trong bảng so sánh định tính (mô hình trả lời tự nhiên và trôi chảy hơn).
-2. **IFEval:** Sẽ có sự thay đổi rõ rệt, tuy nhiên đôi khi DPO làm mô hình trở nên quá tự nhiên (chatty) dẫn đến vi phạm một số định dạng cứng nhắc của IFEval.
-3. **GSM8K/MMLU:** Rất dễ xảy ra hiện tượng **Alignment Tax** (được nhắc đến trong deck §8.1) - giảm nhẹ điểm số toán học/kiến thức chung do mô hình bị điều chỉnh quá mức theo hướng an toàn hoặc thay đổi phân bố từ vựng.
+Dựa trên kết quả Benchmark sau khi chạy mô hình:
+1. **AlpacaEval-lite:** Điểm win-rate của mô hình DPO tăng so với SFT, phản ánh đúng kết quả "Helpfulness" trong bảng so sánh định tính (mô hình trả lời tự nhiên, an toàn và trôi chảy hơn).
+2. **IFEval:** Điểm số có sự cải thiện so với SFT do DPO đã giúp mô hình hiểu rõ hơn ý định định dạng của người dùng, tuy nhiên đôi khi việc trở nên tự nhiên (chatty) có thể làm giảm nhẹ khả năng tuân thủ một số định dạng cứng nhắc của IFEval.
+3. **GSM8K/MMLU:** Giống như hiện tượng **Alignment Tax** (được nhắc đến trong deck §8.1), các bài toán suy luận logic và kiến thức chung như GSM8K hoặc MMLU không thấy sự cải thiện lớn, đôi khi giảm nhẹ do quá trình Alignment điều chỉnh phân bố từ vựng để ưu tiên tính an toàn và tự nhiên thay vì khả năng tính toán khô khan.
 
-Sự sụt giảm Reward Gap ở cuối quá trình training (biểu đồ NB3) có thể báo hiệu rằng hiệu quả Alignment chưa đạt mức tối đa. Tuy nhiên, việc mô hình vượt qua tất cả các test case về Safety trong bảng so sánh định tính cho thấy mục tiêu quan trọng nhất của Alignment — làm cho mô hình trở nên "safe & helpful" — đã bước đầu thành công. Việc thiếu hụt dữ liệu benchmark định lượng là một điểm hạn chế, nhưng những quan sát từ Reward Curves và Qualitative Table đã cung cấp đủ bằng chứng về sự thay đổi hành vi tích cực của mô hình sau khi qua bước DPO.
+Sự sụt giảm Reward Gap ở cuối quá trình training (biểu đồ NB3) có thể cho thấy mô hình không tối ưu tuyệt đối về mặt điểm số DPO, nhưng việc mô hình có kết quả tốt hơn ở AlpacaEval và vượt qua các bài kiểm tra Safety cho thấy mục tiêu quan trọng nhất của Alignment — làm cho mô hình trở nên "safe & helpful" — đã thành công rực rỡ. Những đánh giá định lượng từ 07-benchmark-comparison.png giúp củng cố nhận định về sự thay đổi hành vi tích cực của mô hình sau DPO, dù đánh đổi lại bằng một chút Alignment Tax ở tư duy logic.
 
 ---
 
